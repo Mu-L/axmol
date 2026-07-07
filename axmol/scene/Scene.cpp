@@ -126,21 +126,7 @@ void Scene::initDefaultCamera()
 {
     if (!_defaultCamera)
     {
-        auto& size = _director->getCanvasSize();
-        switch (getDefaultCameraMode())
-        {
-        case CameraMode::Ortho:
-            _defaultCamera = Camera::createOrthographicView(size, -1024.0f, 1024.0f);
-            break;
-        case CameraMode::Perspective:
-            _defaultCamera = Camera::createPerspective(60.0f, size.width / size.height, 0.3f, 1000.0f);
-            _defaultCamera->setPosition3D(Vec3(0.0f, 1.5f, 5.0f));
-            _defaultCamera->lookAt(Vec3(0, 0, 0));
-            break;
-        case CameraMode::Classic:
-            _defaultCamera = Camera::create();
-            break;
-        }
+        _defaultCamera = Camera::create(getDefaultCameraMode());
         addChild(_defaultCamera);
     }
 }

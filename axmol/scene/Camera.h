@@ -128,7 +128,7 @@ public:
 
     /** create default camera (Classic calibrated perspective mode), the depth of the default camera is 0
      */
-    static Camera* create();
+    static Camera* create(CameraMode mode = CameraMode::Classic);
 
     /**
      * Get the visiting camera , the visiting camera shall be set on Scene::render
@@ -413,9 +413,9 @@ public:
      * WP8*/
     void setAdditionalProjection(const Mat4& mat);
 
-    /** Init default camera with director current projection,
+    /** Init camera with Classic calibrated perspective mode
     !!!Note: Must invoke this function again when director projection or winsize changed */
-    void initDefault();
+    void initClassic();
 
     /** Update camera transformations */
     void updateTransform() override;

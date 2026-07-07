@@ -42,13 +42,33 @@ Viewport Camera::_defaultViewport;
 
 // start static methods
 
-Camera* Camera::create()
+Camera* Camera::create(CameraMode mode)
 {
-    Camera* camera = new Camera();
-    camera->initDefault();
-    camera->autorelease();
-
-    return camera;
+    auto& size = Director::getInstance()->getCanvasSize();
+    switch (mode)
+    {
+    case CameraMode::Ortho:
+        {
+            auto cam = Camera::createOrthographicView(size, -1024.0f, 1024.0f);
+            return cam;
+        }
+    case CameraMode::Perspective:
+        {
+            auto cam = Camera::createPerspective(60.0f, size.width / size.height, 0.3f, 1000.0f);
+            cam->setPosition3D(Vec3(0.0f, 1.5f, 5.0f));
+            cam->lookAt(Vec3(0, 0, 0));
+            return cam;
+        }
+    case CameraMode::Classic:
+        {
+            Camera* camera = new Camera();
+            camera->initClassic();
+            camera->autorelease();
+            return camera;
+        }
+    }
+    AXASSERT(false, "Invalid CameraMode");
+    return nullptr;
 }
 
 Camera* Camera::createPerspective(float fieldOfView, float aspectRatio, float nearPlane, float farPlane)
@@ -206,7 +226,7 @@ void Camera::setAdditionalProjection(const Mat4& mat)
     getViewProjectionMatrix();
 }
 
-void Camera::initDefault()
+void Camera::initClassic()
 {
     // Classic mode only - calibrated perspective
     auto& size   = _director->getCanvasSize();
