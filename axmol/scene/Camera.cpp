@@ -48,24 +48,24 @@ Camera* Camera::create(CameraMode mode)
     switch (mode)
     {
     case CameraMode::Ortho:
-        {
-            auto cam = Camera::createOrthographicView(size, -1024.0f, 1024.0f);
-            return cam;
-        }
+    {
+        auto cam = Camera::createOrthographicView(size, -1024.0f, 1024.0f);
+        return cam;
+    }
     case CameraMode::Perspective:
-        {
-            auto cam = Camera::createPerspective(60.0f, size.width / size.height, 0.3f, 1000.0f);
-            cam->setPosition3D(Vec3(0.0f, 1.5f, 5.0f));
-            cam->lookAt(Vec3(0, 0, 0));
-            return cam;
-        }
+    {
+        auto cam = Camera::createPerspective(60.0f, size.width / size.height, 0.3f, 1000.0f);
+        cam->setPosition3D(Vec3(0.0f, 1.5f, 5.0f));
+        cam->lookAt(Vec3(0, 0, 0));
+        return cam;
+    }
     case CameraMode::Classic:
-        {
-            Camera* camera = new Camera();
-            camera->initClassic();
-            camera->autorelease();
-            return camera;
-        }
+    {
+        Camera* camera = new Camera();
+        camera->initClassic();
+        camera->autorelease();
+        return camera;
+    }
     }
     AXASSERT(false, "Invalid CameraMode");
     return nullptr;
