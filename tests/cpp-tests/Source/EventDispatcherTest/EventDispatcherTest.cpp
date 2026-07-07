@@ -970,16 +970,9 @@ void DirectorEventTest::onEnter()
         auto infoStr = fmt::format_to_z(buf, "Draw: {}", _count3++);
         _label3->setString(buf);
     });
-    _event4 = dispatcher->addCustomEventListener(Director::EVENT_PROJECTION_CHANGED, [&](CustomEvent* event) {
-        char buf[20];
-        auto infoStr = fmt::format_to_z(buf, "Projection: {}", _count4++);
-        _label4->setString(buf);
-    });
-
     _event1->retain();
     _event2->retain();
     _event3->retain();
-    _event4->retain();
 
     scheduleUpdate();
 }
@@ -991,7 +984,6 @@ void DirectorEventTest::update(float dt)
     time += dt;
     if (time > 0.5)
     {
-        Director::getInstance()->setProjection(Director::Projection::_2D);
         time = 0;
     }
 }
@@ -1000,18 +992,14 @@ void DirectorEventTest::onExit()
 {
     EventDispatcherTestDemo::onExit();
 
-    Director::getInstance()->setProjection(Director::Projection::DEFAULT);
-
     auto dispatcher = Director::getInstance()->getEventDispatcher();
     dispatcher->removeEventListener(_event1);
     dispatcher->removeEventListener(_event2);
     dispatcher->removeEventListener(_event3);
-    dispatcher->removeEventListener(_event4);
 
     _event1->release();
     _event2->release();
     _event3->release();
-    _event4->release();
 }
 
 void DirectorEventTest::onEvent1(CustomEvent* event)

@@ -1,5 +1,6 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
+ Copyright (c) 2019-present Axmol Engine contributors (see AUTHORS.md).
 
  https://axmol.dev/
 
@@ -24,27 +25,29 @@
 
 #pragma once
 
-#include "BugsTest.h"
+#include "axmol/axmol.h"
 
-class Bug12847Layer : public BugsTestBase
+class MainScene : public ax::Scene
 {
 public:
-    CREATE_FUNC(Bug12847Layer);
+    ax::DefaultCameraMode getDefaultCameraMode() const override { return ax::DefaultCameraMode::Perspective; }
 
-    Bug12847Layer();
-    virtual ~Bug12847Layer();
+    bool init() override;
+    void update(float delta) override;
 
-    virtual bool init() override;
-    virtual std::string title() const override { return "Bug1287"; }
+    bool onPointerDown(ax::PointerEvent* ev);
+    void onPointerMove(ax::PointerEvent* ev);
+    void onPointerUp(ax::PointerEvent* ev);
+    bool onPointerScroll(ax::PointerEvent* ev);
+    void onKeyPressed(ax::KeyboardEvent* ev);
+    void onKeyReleased(ax::KeyboardEvent* ev);
+    void menuCloseCallback(ax::Object* sender);
 
-protected:
-    virtual void update(float dt) override;
-    virtual void onEnter() override;
-    virtual void onExit() override;
+    MainScene();
+    ~MainScene() override;
 
 private:
-    ax::Sprite* sprite1;
-    ax::Sprite* sprite2;
-    ax::Sprite* sprite3;
-    ax::Sprite* sprite4;
+    ax::Camera* _uiCamera = nullptr;
+    ax::MeshRenderer* _cubeRenderer = nullptr;
+    float _rotationAngle = 0.0f;
 };

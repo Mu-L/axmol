@@ -56,6 +56,23 @@ class NavMesh;
  * @{
  */
 
+/**
+ * @brief Controls how the scene's default camera is initialized.
+ *
+ * - Ortho:       Orthographic projection. Suitable for pure 2D games.
+ * - Perspective: Standard perspective projection. Suitable for pure 3D games.
+ *                The camera must be positioned by the user.
+ * - Classic:     Calibrated perspective (current default). A single camera
+ *                that renders 2D content at z=0 without distortion while
+ *                supporting 3D objects. This is the legacy Cocos2d-x behavior.
+ */
+enum class DefaultCameraMode : uint8_t
+{
+    Ortho,
+    Perspective,
+    Classic,
+};
+
 /** @class Scene
 * @brief Scene is a subclass of Node that is used only as an abstract concept.
 
@@ -98,6 +115,12 @@ public:
      * @return The default camera of scene.
      */
     Camera* getDefaultCamera() const { return _defaultCamera; }
+
+    /**
+     * @brief Returns the default camera mode for this scene.
+     * Override in subclasses to control how the default camera is initialized.
+     */
+    virtual DefaultCameraMode getDefaultCameraMode() const { return DefaultCameraMode::Classic; }
 
     /** Get lights.
      * @return The vector of lights.
@@ -168,7 +191,6 @@ public:
 
 private:
     void initDefaultCamera();
-    void onProjectionChanged(CustomEvent* event);
 
 protected:
     void tick(float delta);
@@ -199,8 +221,6 @@ protected:
     Camera* _debugCamera{nullptr};
 
     bool _fixedUpdateEnabled{true};
-
-    CustomEventListener* _event;
 
     std::vector<BaseLight*> _lights;
 

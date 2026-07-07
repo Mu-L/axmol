@@ -68,6 +68,16 @@ enum class CameraFlag
     USER8   = 1 << 8,
 };
 /**
+ * Internal camera mode flag, set during creation.
+ */
+enum class CameraMode : uint8_t
+{
+    Ortho,
+    PerspectiveExtended,
+    Classic,
+};
+
+/**
  * Defines a camera .
  */
 class AX_DLL Camera : public Node
@@ -125,7 +135,7 @@ public:
      */
     static Camera* createOrthographicView(const Vec2& size, float nearPlane, float farPlane);
 
-    /** create default camera, the camera type depends on Director::getProjection, the depth of the default camera is 0
+    /** create default camera (Classic calibrated perspective mode), the depth of the default camera is 0
      */
     static Camera* create();
 
@@ -473,6 +483,8 @@ protected:
 #endif
     int8_t _depth = -1;  // camera depth, the depth of camera with CameraFlag::DEFAULT flag is 0 by default, a camera
                          // with larger depth is drawn on top of camera with smaller depth
+
+    CameraMode _cameraMode{CameraMode::Classic};  // set during creation
 
     float _eyeZdistance;  // Z eye projection distance for 2D in 3D projection.
     float _zoomFactor =

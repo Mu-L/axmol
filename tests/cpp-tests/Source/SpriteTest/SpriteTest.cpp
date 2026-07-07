@@ -958,13 +958,10 @@ void SpriteBatchNodeReorderIssue767::reorderSprites(float dt)
 void SpriteZVertex::onEnter()
 {
     SpriteTestDemo::onEnter();
-
-    Director::getInstance()->setProjection(Director::Projection::_3D);
 }
 
 void SpriteZVertex::onExit()
 {
-    Director::getInstance()->setProjection(Director::Projection::DEFAULT);
     SpriteTestDemo::onExit();
 }
 
@@ -1048,13 +1045,10 @@ std::string SpriteZVertex::subtitle() const
 void SpriteBatchNodeZVertex::onEnter()
 {
     SpriteTestDemo::onEnter();
-
-    Director::getInstance()->setProjection(Director::Projection::_3D);
 }
 
 void SpriteBatchNodeZVertex::onExit()
 {
-    Director::getInstance()->setProjection(Director::Projection::DEFAULT);
     SpriteTestDemo::onExit();
 }
 

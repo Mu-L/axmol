@@ -54,6 +54,7 @@ Camera* Camera::create()
 Camera* Camera::createPerspective(float fieldOfView, float aspectRatio, float nearPlane, float farPlane)
 {
     auto ret = new Camera();
+    ret->_cameraMode = CameraMode::PerspectiveExtended;
     ret->initPerspective(fieldOfView, aspectRatio, nearPlane, farPlane);
     ret->autorelease();
     return ret;
@@ -62,6 +63,7 @@ Camera* Camera::createPerspective(float fieldOfView, float aspectRatio, float ne
 Camera* Camera::createOrthographic(float zoomX, float zoomY, float nearPlane, float farPlane)
 {
     auto ret = new Camera();
+    ret->_cameraMode = CameraMode::Ortho;
     ret->initOrthographic(zoomX, zoomY, nearPlane, farPlane);
     ret->autorelease();
     return ret;
@@ -70,6 +72,7 @@ Camera* Camera::createOrthographic(float zoomX, float zoomY, float nearPlane, fl
 Camera* Camera::createOrthographicView(const Vec2& size, float nearPlane, float farPlane)
 {
     auto ret = new Camera();
+    ret->_cameraMode = CameraMode::Ortho;
     ret->initOrthographicView(size, nearPlane, farPlane);
     ret->autorelease();
     return ret;
@@ -205,35 +208,18 @@ void Camera::setAdditionalProjection(const Mat4& mat)
 
 void Camera::initDefault()
 {
+    // Classic mode only - calibrated perspective
     auto& size = _director->getCanvasSize();
-    switch (_director->getProjection())
-    {
-    case Director::Projection::_2D:
-    {
-        _fieldOfView = 60.0F;
-        _nearPlane   = -1024.0F;
-        _farPlane    = 1024.0F;
-        initOrthographicView(size, _nearPlane, _farPlane);
-        break;
-    }
-
-    case Director::Projection::_3D:
-    {
-        float zeye   = _director->getZEye();
-        _fieldOfView = 60.0F;
-        _nearPlane   = 0.5F;
-        _farPlane    = zeye + size.height / 2.0f;
-        initPerspective(_fieldOfView, (float)size.width / size.height, _nearPlane, _farPlane);
-        Vec3 eye(size.width / 2.0f, size.height / 2.0f, zeye), center(size.width / 2.0f, size.height / 2.0f, 0.0f),
-            up(0.0f, 1.0f, 0.0f);
-        setPosition3D(eye);
-        lookAt(center, up);
-        _eyeZdistance = eye.z;
-        break;
-    }
-    default:
-        break;
-    }
+    float zeye = _director->getZEye();
+    _fieldOfView = 60.0F;
+    _nearPlane   = 0.5F;
+    _farPlane    = zeye + size.height / 2.0f;
+    initPerspective(_fieldOfView, (float)size.width / size.height, _nearPlane, _farPlane);
+    Vec3 eye(size.width / 2.0f, size.height / 2.0f, zeye), center(size.width / 2.0f, size.height / 2.0f, 0.0f),
+        up(0.0f, 1.0f, 0.0f);
+    setPosition3D(eye);
+    lookAt(center, up);
+    _eyeZdistance = eye.z;
 
     setDepth(0);
 
@@ -244,16 +230,19 @@ void Camera::initDefault()
 void Camera::updateTransform()
 {
     auto& size = _director->getCanvasSize();
-    // create default camera
-    switch (_director->getProjection())
+    switch (_cameraMode)
     {
-    case Director::Projection::_2D:
+    case CameraMode::Ortho:
     {
         initOrthographicView(size, _nearPlane, _farPlane);
         break;
     }
-
-    case Director::Projection::_3D:
+    case CameraMode::PerspectiveExtended:
+    {
+        initPerspective(_fieldOfView, (float)size.width / size.height, _nearPlane, _farPlane);
+        break;
+    }
+    case CameraMode::Classic:
     {
         float zeye = _director->getZEye();
         initPerspective(_fieldOfView, (float)size.width / size.height, _nearPlane, _farPlane);
@@ -262,8 +251,6 @@ void Camera::updateTransform()
         _eyeZdistance = eye.z;
         break;
     }
-    default:
-        break;
     }
 }
 
@@ -437,14 +424,15 @@ void Camera::setZoom(float factor)
 
 void Camera::applyZoom()
 {
-    switch (_director->getProjection())
+    switch (_cameraMode)
     {
-    case ax::Director::Projection::_2D:
+    case CameraMode::Ortho:
     {
         Mat4::createOrthographic(_zoom[0] * _zoomFactor, _zoom[1] * _zoomFactor, _nearPlane, _farPlane, &_projection);
         break;
     }
-    case ax::Director::Projection::_3D:
+    case CameraMode::PerspectiveExtended:
+    case CameraMode::Classic:
     {
         // Push the far plane farther the more we zoom out.
         if (_zoomFactorFarPlane * _zoomFactor > _farPlane)
@@ -463,8 +451,6 @@ void Camera::applyZoom()
         this->setPositionZ(_eyeZdistance * _zoomFactor);
         break;
     }
-    default:
-        break;
     }
 }
 
