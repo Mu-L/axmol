@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2019-present Axmol Engine contributors (see AUTHORS.md).
@@ -37,7 +37,7 @@
 #include "axmol/2d/Sprite.h"
 #include "axmol/scene/Scene.h"
 #include "axmol/3d/Bundle3D.h"
-#include "axmol/3d/Ray.h"
+#include "axmol/math/Ray.h"
 #include "axmol/base/Value.h"
 #include "axmol/base/Types.h"
 #include "axmol/physics/physics-2d.h"

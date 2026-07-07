@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
  Copyright (c) 2019-present Axmol Engine contributors (see AUTHORS.md).
 
  https://axmol.dev/
@@ -28,7 +28,7 @@
 #include <vector>
 #include <memory>
 
-#include "axmol/3d/Ray.h"
+#include "axmol/math/Ray.h"
 #include "axmol/base/RefPtr.h"
 #include "axmol/math/Mat4.h"
 #include "axmol/platform/PlatformMacros.h"

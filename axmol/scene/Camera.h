@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 Copyright (c) 2014-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2019 Xiamen Yaji Software Co., Ltd.
 Copyright (c) 2019-present Axmol Engine contributors (see AUTHORS.md).
@@ -30,8 +30,8 @@ THE SOFTWARE.
 
 #include "axmol/scene/Node.h"
 #if defined(AX_ENABLE_3D)
-#    include "axmol/3d/Frustum.h"
-#    include "axmol/3d/Ray.h"
+#    include "axmol/math/Frustum.h"
+#    include "axmol/math/Ray.h"
 #endif
 #include "axmol/renderer/QuadCommand.h"
 #include "axmol/renderer/CustomCommand.h"
@@ -67,15 +67,7 @@ enum class CameraFlag
     USER7   = 1 << 7,
     USER8   = 1 << 8,
 };
-/**
- * Internal camera mode flag, set during creation.
- */
-enum class CameraMode : uint8_t
-{
-    Ortho,
-    PerspectiveExtended,
-    Classic,
-};
+#include "axmol/scene/CameraMode.h"
 
 /**
  * Defines a camera .

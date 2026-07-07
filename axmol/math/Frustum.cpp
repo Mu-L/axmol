@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
@@ -23,7 +23,7 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "axmol/3d/Frustum.h"
+#include "axmol/math/Frustum.h"
 #include "axmol/scene/Camera.h"
 
 namespace ax

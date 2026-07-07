@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2019-present Axmol Engine contributors (see AUTHORS.md).
@@ -31,7 +31,7 @@
 #include "axmol/base/Event.h"
 #include "axmol/base/Object.h"
 #include "axmol/math/Math.h"
-#include "axmol/3d/Ray.h"
+#include "axmol/math/Ray.h"
 
 /**
  * @addtogroup base

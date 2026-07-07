@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2019-present Axmol Engine contributors (see AUTHORS.md).
@@ -29,7 +29,7 @@
 #include <map>
 
 #include "axmol/3d/Bundle3DData.h"
-#include "axmol/3d/AABB.h"
+#include "axmol/math/AABB.h"
 #include "axmol/3d/shaderinfos.h"
 
 #include "axmol/base/Object.h"

@@ -117,7 +117,7 @@
         {
             "action": "rep",
             "pattern": "(class MainScene : public ax::Scene\\s*\\{)",
-            "to": "`$1\npublic:\n    ax::DefaultCameraMode getDefaultCameraMode() const override { return ax::DefaultCameraMode::Ortho; }",
+            "to": "`$1\npublic:\n    ax::CameraMode getDefaultCameraMode() const override { return ax::CameraMode::Ortho; }",
             "files": ["Source/MainScene.h"]
         }
     ],

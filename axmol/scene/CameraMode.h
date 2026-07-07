@@ -1,5 +1,4 @@
 /****************************************************************************
- Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2019-present Axmol Engine contributors (see AUTHORS.md).
 
  https://axmol.dev/
@@ -22,32 +21,18 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
-
 #pragma once
 
-#include "axmol/axmol.h"
+#include <cstdint>
 
-class MainScene : public ax::Scene
+namespace ax
 {
-public:
-    ax::CameraMode getDefaultCameraMode() const override { return ax::CameraMode::Perspective; }
 
-    bool init() override;
-    void update(float delta) override;
-
-    bool onPointerDown(ax::PointerEvent* ev);
-    void onPointerMove(ax::PointerEvent* ev);
-    void onPointerUp(ax::PointerEvent* ev);
-    bool onPointerScroll(ax::PointerEvent* ev);
-    void onKeyPressed(ax::KeyboardEvent* ev);
-    void onKeyReleased(ax::KeyboardEvent* ev);
-    void menuCloseCallback(ax::Object* sender);
-
-    MainScene();
-    ~MainScene() override;
-
-private:
-    ax::Camera* _uiCamera           = nullptr;
-    ax::MeshRenderer* _cubeRenderer = nullptr;
-    float _rotationAngle            = 0.0f;
+enum class CameraMode : uint8_t
+{
+    Ortho,
+    Perspective,
+    Classic,
 };
+
+}  // namespace ax

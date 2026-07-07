@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
@@ -237,19 +237,19 @@ THE SOFTWARE.
 #include "axmol/scene/ComponentContainer.h"
 
 // 3d
-#include "axmol/3d/AABB.h"
+#include "axmol/math/AABB.h"
 #include "axmol/3d/Animate3D.h"
 #include "axmol/3d/Animation3D.h"
 #include "axmol/3d/AttachNode.h"
 #include "axmol/3d/BillBoard.h"
-#include "axmol/3d/Frustum.h"
+#include "axmol/math/Frustum.h"
 #include "axmol/3d/Mesh.h"
 #include "axmol/3d/MeshSkin.h"
 #include "axmol/3d/MotionStreak3D.h"
 #include "axmol/3d/MeshVertexIndexData.h"
-#include "axmol/3d/OBB.h"
-#include "axmol/3d/Plane.h"
-#include "axmol/3d/Ray.h"
+#include "axmol/math/OBB.h"
+#include "axmol/math/Plane.h"
+#include "axmol/math/Ray.h"
 #include "axmol/3d/Skeleton3D.h"
 #include "axmol/3d/Skybox.h"
 #include "axmol/3d/MeshRenderer.h"

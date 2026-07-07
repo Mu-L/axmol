@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
@@ -27,7 +27,7 @@
 #pragma once
 
 #include "Particle3D/PU/PUAffector.h"
-#include "axmol/3d/AABB.h"
+#include "axmol/math/AABB.h"
 
 namespace ax
 {

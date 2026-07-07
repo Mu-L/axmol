@@ -31,6 +31,7 @@ THE SOFTWARE.
 
 #include <string>
 #include "axmol/scene/Node.h"
+#include "axmol/scene/CameraMode.h"
 
 namespace ax
 {
@@ -56,36 +57,6 @@ class NavMesh;
  * @{
  */
 
-/**
- * @brief Controls how the scene's default camera is initialized.
- *
- * - Ortho:       Orthographic projection. Suitable for pure 2D games.
- * - Perspective: Standard perspective projection. Suitable for pure 3D games.
- *                The camera must be positioned by the user.
- * - Classic:     Calibrated perspective (current default). A single camera
- *                that renders 2D content at z=0 without distortion while
- *                supporting 3D objects. This is the legacy Cocos2d-x behavior.
- */
-enum class DefaultCameraMode : uint8_t
-{
-    Ortho,
-    Perspective,
-    Classic,
-};
-
-/** @class Scene
-* @brief Scene is a subclass of Node that is used only as an abstract concept.
-
-Scene and Node are almost identical with the difference that Scene has its
-anchor point (by default) at the center of the screen.
-
-For the moment Scene has no other logic than that, but in future releases it might have
-additional logic.
-
-It is a good practice to use a Scene as the parent of all your nodes.
-
-Scene will create a default camera for you.
-*/
 class AX_DLL Scene : public Node
 {
 public:
@@ -120,7 +91,7 @@ public:
      * @brief Returns the default camera mode for this scene.
      * Override in subclasses to control how the default camera is initialized.
      */
-    virtual DefaultCameraMode getDefaultCameraMode() const { return DefaultCameraMode::Classic; }
+    virtual CameraMode getDefaultCameraMode() const { return CameraMode::Classic; }
 
     /** Get lights.
      * @return The vector of lights.

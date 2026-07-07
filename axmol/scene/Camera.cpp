@@ -54,7 +54,7 @@ Camera* Camera::create()
 Camera* Camera::createPerspective(float fieldOfView, float aspectRatio, float nearPlane, float farPlane)
 {
     auto ret         = new Camera();
-    ret->_cameraMode = CameraMode::PerspectiveExtended;
+    ret->_cameraMode = CameraMode::Perspective;
     ret->initPerspective(fieldOfView, aspectRatio, nearPlane, farPlane);
     ret->autorelease();
     return ret;
@@ -237,7 +237,7 @@ void Camera::updateTransform()
         initOrthographicView(size, _nearPlane, _farPlane);
         break;
     }
-    case CameraMode::PerspectiveExtended:
+    case CameraMode::Perspective:
     {
         initPerspective(_fieldOfView, (float)size.width / size.height, _nearPlane, _farPlane);
         break;
@@ -431,7 +431,7 @@ void Camera::applyZoom()
         Mat4::createOrthographic(_zoom[0] * _zoomFactor, _zoom[1] * _zoomFactor, _nearPlane, _farPlane, &_projection);
         break;
     }
-    case CameraMode::PerspectiveExtended:
+    case CameraMode::Perspective:
     case CameraMode::Classic:
     {
         // Push the far plane farther the more we zoom out.

@@ -1,6 +1,7 @@
 set(_AX_SCENE_HEADER
   scene/Camera.h
   scene/CameraBackgroundBrush.h
+  scene/CameraMode.h
   scene/ComponentContainer.h
   scene/Component.h
   scene/Node.h

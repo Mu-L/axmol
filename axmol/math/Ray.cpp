@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 Copyright (c) 2014-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
@@ -21,7 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#include "axmol/3d/Ray.h"
+#include "axmol/math/Ray.h"
 
 namespace ax
 {

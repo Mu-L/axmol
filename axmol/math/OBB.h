@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
@@ -25,7 +25,7 @@
 
 #pragma once
 
-#include "axmol/3d/AABB.h"
+#include "axmol/math/AABB.h"
 
 namespace ax
 {
