@@ -53,7 +53,7 @@ Camera* Camera::create()
 
 Camera* Camera::createPerspective(float fieldOfView, float aspectRatio, float nearPlane, float farPlane)
 {
-    auto ret = new Camera();
+    auto ret         = new Camera();
     ret->_cameraMode = CameraMode::PerspectiveExtended;
     ret->initPerspective(fieldOfView, aspectRatio, nearPlane, farPlane);
     ret->autorelease();
@@ -62,7 +62,7 @@ Camera* Camera::createPerspective(float fieldOfView, float aspectRatio, float ne
 
 Camera* Camera::createOrthographic(float zoomX, float zoomY, float nearPlane, float farPlane)
 {
-    auto ret = new Camera();
+    auto ret         = new Camera();
     ret->_cameraMode = CameraMode::Ortho;
     ret->initOrthographic(zoomX, zoomY, nearPlane, farPlane);
     ret->autorelease();
@@ -71,7 +71,7 @@ Camera* Camera::createOrthographic(float zoomX, float zoomY, float nearPlane, fl
 
 Camera* Camera::createOrthographicView(const Vec2& size, float nearPlane, float farPlane)
 {
-    auto ret = new Camera();
+    auto ret         = new Camera();
     ret->_cameraMode = CameraMode::Ortho;
     ret->initOrthographicView(size, nearPlane, farPlane);
     ret->autorelease();
@@ -209,8 +209,8 @@ void Camera::setAdditionalProjection(const Mat4& mat)
 void Camera::initDefault()
 {
     // Classic mode only - calibrated perspective
-    auto& size = _director->getCanvasSize();
-    float zeye = _director->getZEye();
+    auto& size   = _director->getCanvasSize();
+    float zeye   = _director->getZEye();
     _fieldOfView = 60.0F;
     _nearPlane   = 0.5F;
     _farPlane    = zeye + size.height / 2.0f;

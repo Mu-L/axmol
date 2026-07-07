@@ -237,7 +237,7 @@ bool Control::isOpacityModifyRGB() const
 
 Vec2 Control::getTouchLocation(ax::PointerEvent* touch)
 {
-    Vec2 touchLocation = touch->getWorldPoint();                     // Get the touch position
+    Vec2 touchLocation = touch->getWorldPoint();                   // Get the touch position
     touchLocation      = this->convertToNodeSpace(touchLocation);  // Convert to the node space of this class
 
     return touchLocation;

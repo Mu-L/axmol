@@ -234,7 +234,7 @@ bool ControlSlider::isTouchInside(PointerEvent* touch)
 
 Vec2 ControlSlider::locationFromTouch(PointerEvent* touch)
 {
-    Vec2 touchLocation = touch->getWorldPoint();                     // Get the touch position
+    Vec2 touchLocation = touch->getWorldPoint();                   // Get the touch position
     touchLocation      = this->convertToNodeSpace(touchLocation);  // Convert to the node space of this class
 
     if (touchLocation.x < 0)

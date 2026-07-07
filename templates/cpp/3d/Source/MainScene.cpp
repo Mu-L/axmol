@@ -34,50 +34,178 @@ using namespace ax;
 // 24 vertices (4 per face x 6 faces), each with position (3), normal (3), texcoord (2)
 static const std::vector<float> s_positions = {
     // Front (+Z)
-    -0.5f, -0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f,
+    -0.5f,
+    -0.5f,
+    0.5f,
+    0.5f,
+    -0.5f,
+    0.5f,
+    0.5f,
+    0.5f,
+    0.5f,
+    -0.5f,
+    0.5f,
+    0.5f,
     // Back (-Z)
-    -0.5f, -0.5f, -0.5f, -0.5f,  0.5f, -0.5f,  0.5f,  0.5f, -0.5f,  0.5f, -0.5f, -0.5f,
+    -0.5f,
+    -0.5f,
+    -0.5f,
+    -0.5f,
+    0.5f,
+    -0.5f,
+    0.5f,
+    0.5f,
+    -0.5f,
+    0.5f,
+    -0.5f,
+    -0.5f,
     // Top (+Y)
-    -0.5f,  0.5f,  0.5f,  0.5f,  0.5f,  0.5f,  0.5f,  0.5f, -0.5f, -0.5f,  0.5f, -0.5f,
+    -0.5f,
+    0.5f,
+    0.5f,
+    0.5f,
+    0.5f,
+    0.5f,
+    0.5f,
+    0.5f,
+    -0.5f,
+    -0.5f,
+    0.5f,
+    -0.5f,
     // Bottom (-Y)
-    -0.5f, -0.5f, -0.5f,  0.5f, -0.5f, -0.5f,  0.5f, -0.5f,  0.5f, -0.5f, -0.5f,  0.5f,
+    -0.5f,
+    -0.5f,
+    -0.5f,
+    0.5f,
+    -0.5f,
+    -0.5f,
+    0.5f,
+    -0.5f,
+    0.5f,
+    -0.5f,
+    -0.5f,
+    0.5f,
     // Right (+X)
-     0.5f, -0.5f,  0.5f,  0.5f, -0.5f, -0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f,  0.5f,
+    0.5f,
+    -0.5f,
+    0.5f,
+    0.5f,
+    -0.5f,
+    -0.5f,
+    0.5f,
+    0.5f,
+    -0.5f,
+    0.5f,
+    0.5f,
+    0.5f,
     // Left (-X)
-    -0.5f, -0.5f, -0.5f, -0.5f, -0.5f,  0.5f, -0.5f,  0.5f,  0.5f, -0.5f,  0.5f, -0.5f,
+    -0.5f,
+    -0.5f,
+    -0.5f,
+    -0.5f,
+    -0.5f,
+    0.5f,
+    -0.5f,
+    0.5f,
+    0.5f,
+    -0.5f,
+    0.5f,
+    -0.5f,
 };
 
 static const std::vector<float> s_normals = {
     // Front (+Z)
-    0,0,1, 0,0,1, 0,0,1, 0,0,1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
     // Back (-Z)
-    0,0,-1, 0,0,-1, 0,0,-1, 0,0,-1,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    -1,
     // Top (+Y)
-    0,1,0, 0,1,0, 0,1,0, 0,1,0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
     // Bottom (-Y)
-    0,-1,0, 0,-1,0, 0,-1,0, 0,-1,0,
+    0,
+    -1,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    -1,
+    0,
     // Right (+X)
-    1,0,0, 1,0,0, 1,0,0, 1,0,0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
     // Left (-X)
-    -1,0,0, -1,0,0, -1,0,0, -1,0,0,
+    -1,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    -1,
+    0,
+    0,
 };
 
 static const std::vector<float> s_texs = {
-    0,0, 1,0, 1,1, 0,1,
-    0,0, 1,0, 1,1, 0,1,
-    0,0, 1,0, 1,1, 0,1,
-    0,0, 1,0, 1,1, 0,1,
-    0,0, 1,0, 1,1, 0,1,
-    0,0, 1,0, 1,1, 0,1,
+    0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1,
+    0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1,
 };
 
 static const ilist_u16_t s_indices = {
-     0,  1,  2,   0,  2,  3,  // front
-     4,  5,  6,   4,  6,  7,  // back
-     8,  9, 10,   8, 10, 11,  // top
-    12, 13, 14,  12, 14, 15,  // bottom
-    16, 17, 18,  16, 18, 19,  // right
-    20, 21, 22,  20, 22, 23,  // left
+    0,  1,  2,  0,  2,  3,   // front
+    4,  5,  6,  4,  6,  7,   // back
+    8,  9,  10, 8,  10, 11,  // top
+    12, 13, 14, 12, 14, 15,  // bottom
+    16, 17, 18, 16, 18, 19,  // right
+    20, 21, 22, 20, 22, 23,  // left
 };
 
 MainScene::MainScene() {}
@@ -133,14 +261,14 @@ bool MainScene::init()
     addChild(label, 10);
 
     // ---- Pointer / Keyboard events ----
-    auto pointerListener = PointerEventListener::create();
-    pointerListener->onPointerDown = AX_CALLBACK_1(MainScene::onPointerDown, this);
-    pointerListener->onPointerMove = AX_CALLBACK_1(MainScene::onPointerMove, this);
-    pointerListener->onPointerUp   = AX_CALLBACK_1(MainScene::onPointerUp, this);
+    auto pointerListener             = PointerEventListener::create();
+    pointerListener->onPointerDown   = AX_CALLBACK_1(MainScene::onPointerDown, this);
+    pointerListener->onPointerMove   = AX_CALLBACK_1(MainScene::onPointerMove, this);
+    pointerListener->onPointerUp     = AX_CALLBACK_1(MainScene::onPointerUp, this);
     pointerListener->onPointerScroll = AX_CALLBACK_1(MainScene::onPointerScroll, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(pointerListener, this);
 
-    auto keyboardListener = EventListenerKeyboard::create();
+    auto keyboardListener           = EventListenerKeyboard::create();
     keyboardListener->onKeyPressed  = AX_CALLBACK_1(MainScene::onKeyPressed, this);
     keyboardListener->onKeyReleased = AX_CALLBACK_1(MainScene::onKeyReleased, this);
     _eventDispatcher->addEventListenerWithFixedPriority(keyboardListener, 11);
@@ -171,10 +299,16 @@ void MainScene::update(float delta)
     _cubeRenderer->setRotation3D(Vec3(0, _rotationAngle, 0));
 }
 
-bool MainScene::onPointerDown(PointerEvent* ev) { return true; }
+bool MainScene::onPointerDown(PointerEvent* ev)
+{
+    return true;
+}
 void MainScene::onPointerMove(PointerEvent* ev) {}
 void MainScene::onPointerUp(PointerEvent* ev) {}
-bool MainScene::onPointerScroll(PointerEvent* ev) { return true; }
+bool MainScene::onPointerScroll(PointerEvent* ev)
+{
+    return true;
+}
 void MainScene::onKeyPressed(KeyboardEvent* ev) {}
 void MainScene::onKeyReleased(KeyboardEvent* ev) {}
 

@@ -964,8 +964,7 @@ bool ScrollView::calculateCurrAndPrevPoints(PointerEvent* event, Vec3* currPt, V
     if (prevRay.direction == Vec3())
         return false;
 
-    return calculateRayPlaneHitInNode(currRay, this, currPt) &&
-           calculateRayPlaneHitInNode(prevRay, this, prevPt);
+    return calculateRayPlaneHitInNode(currRay, this, currPt) && calculateRayPlaneHitInNode(prevRay, this, prevPt);
 }
 
 void ScrollView::gatherTouchMove(const Vec2& delta)

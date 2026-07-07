@@ -87,15 +87,15 @@ namespace ax
 std::string_view Director::EVENT_BEFORE_SET_NEXT_SCENE = "director_before_set_next_scene"sv;
 std::string_view Director::EVENT_AFTER_SET_NEXT_SCENE  = "director_after_set_next_scene"sv;
 
-std::string_view Director::EVENT_AFTER_DRAW            = "director_after_draw"sv;
-std::string_view Director::EVENT_AFTER_VISIT           = "director_after_visit"sv;
-std::string_view Director::EVENT_BEFORE_UPDATE         = "director_before_update"sv;
-std::string_view Director::EVENT_AFTER_UPDATE          = "director_after_update"sv;
-std::string_view Director::EVENT_BEFORE_DRAW           = "director_before_draw"sv;
-std::string_view Director::EVENT_RESET                 = "director_reset"sv;
-std::string_view Director::EVENT_DISPOSING             = "director_disposing"sv;
-std::string_view Director::EVENT_BEFORE_GFX_DROP       = "director_before_gfx_drop"sv;
-std::string_view Director::EVENT_AFTER_GFX_DROP        = "director_after_gfx_drop"sv;
+std::string_view Director::EVENT_AFTER_DRAW      = "director_after_draw"sv;
+std::string_view Director::EVENT_AFTER_VISIT     = "director_after_visit"sv;
+std::string_view Director::EVENT_BEFORE_UPDATE   = "director_before_update"sv;
+std::string_view Director::EVENT_AFTER_UPDATE    = "director_after_update"sv;
+std::string_view Director::EVENT_BEFORE_DRAW     = "director_before_draw"sv;
+std::string_view Director::EVENT_RESET           = "director_reset"sv;
+std::string_view Director::EVENT_DISPOSING       = "director_disposing"sv;
+std::string_view Director::EVENT_BEFORE_GFX_DROP = "director_before_gfx_drop"sv;
+std::string_view Director::EVENT_AFTER_GFX_DROP  = "director_after_gfx_drop"sv;
 
 // clang-format off
 static constexpr std::string_view kWindowPlatformNameMap[] = {

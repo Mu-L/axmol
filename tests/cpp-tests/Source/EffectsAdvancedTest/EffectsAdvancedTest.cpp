@@ -217,7 +217,6 @@ void Effect5::onEnter()
 {
     EffectAdvanceBaseTest::onEnter();
 
-    
     auto effect = Liquid::create(2, Size(32, 24), 1, 20);
 
     auto stopEffect = Sequence::create(effect, DelayTime::create(2), StopGrid::create(),

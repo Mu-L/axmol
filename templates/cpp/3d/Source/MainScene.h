@@ -47,7 +47,7 @@ public:
     ~MainScene() override;
 
 private:
-    ax::Camera* _uiCamera = nullptr;
+    ax::Camera* _uiCamera           = nullptr;
     ax::MeshRenderer* _cubeRenderer = nullptr;
-    float _rotationAngle = 0.0f;
+    float _rotationAngle            = 0.0f;
 };
