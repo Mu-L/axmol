@@ -31,7 +31,6 @@ THE SOFTWARE.
 
 #include <string>
 #include "axmol/scene/Node.h"
-#include "axmol/scene/CameraMode.h"
 
 namespace ax
 {

@@ -50,17 +50,17 @@ static const std::vector<float> s_positions = {
 
 static const std::vector<float> s_normals = {
     // Front (+Z)
-    0,0,1, 0,0,1, 0,0,1, 0,0,1,
+     0,  0,  1,   0,  0,  1,   0,  0,  1,   0,  0,  1,
     // Back (-Z)
-    0,0,-1, 0,0,-1, 0,0,-1, 0,0,-1,
+     0,  0, -1,   0,  0, -1,   0,  0, -1,   0,  0, -1,
     // Top (+Y)
-    0,1,0, 0,1,0, 0,1,0, 0,1,0,
+     0,  1,  0,   0,  1,  0,   0,  1,  0,   0,  1,  0,
     // Bottom (-Y)
-    0,-1,0, 0,-1,0, 0,-1,0, 0,-1,0,
+     0, -1,  0,   0, -1,  0,   0, -1,  0,   0, -1,  0,
     // Right (+X)
-    1,0,0, 1,0,0, 1,0,0, 1,0,0,
+     1,  0,  0,   1,  0,  0,   1,  0,  0,   1,  0,  0,
     // Left (-X)
-    -1,0,0, -1,0,0, -1,0,0, -1,0,0,
+    -1,  0,  0,  -1,  0,  0,  -1,  0,  0,  -1,  0,  0,
 };
 // clang-format on
 
@@ -92,8 +92,8 @@ bool MainScene::init()
     // ---- 3D camera ----
     auto mainCamera = getDefaultCamera();
     mainCamera->setCameraFlag(CameraFlag::USER1);
-    mainCamera->setPosition3D(Vec3(0, 1.5f, 5));
-    mainCamera->lookAt(Vec3(0, 0, 0));
+    // mainCamera->setPosition3D(Vec3(0, 1.5f, 5));
+    // mainCamera->lookAt(Vec3(0, 0, 0));
 
     // Background brush
     mainCamera->setBackgroundBrush(CameraBackgroundBrush::createColorBrush(Color(Color32(50, 55, 80)), 1.0f));

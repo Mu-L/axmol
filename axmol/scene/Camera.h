@@ -67,7 +67,6 @@ enum class CameraFlag
     USER7   = 1 << 7,
     USER8   = 1 << 8,
 };
-#include "axmol/scene/CameraMode.h"
 
 /**
  * Defines a camera .

@@ -463,6 +463,13 @@ enum class RenderScaleMode
     Physical  // Use logical pixels multiplied by the DPI scale factor
 };
 
+enum class CameraMode
+{
+    Ortho,       ///< Pure orthographic projection, camera at (w/2, h/2, 0) looking -Z
+    Perspective, ///< Pure perspective projection, user positions camera; default at (0, 1.5, 5) looking at origin
+    Classic,     ///< Calibrated perspective at (w/2, h/2, zEye) looking at center; z=0 has no distortion
+};
+
 using DriverPreference = rhi::DriverType;
 
 /**

@@ -131,10 +131,11 @@ void Scene::initDefaultCamera()
         {
         case CameraMode::Ortho:
             _defaultCamera = Camera::createOrthographicView(size, -1024.0f, 1024.0f);
-            _defaultCamera->setPosition3D(Vec3(size.width / 2.0f, size.height / 2.0f, 0.0f));
             break;
         case CameraMode::Perspective:
             _defaultCamera = Camera::createPerspective(60.0f, size.width / size.height, 0.3f, 1000.0f);
+            _defaultCamera->setPosition3D(Vec3(0.0f, 1.5f, 5.0f));
+            _defaultCamera->lookAt(Vec3(0, 0, 0));
             break;
         case CameraMode::Classic:
             _defaultCamera = Camera::create();
