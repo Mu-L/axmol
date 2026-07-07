@@ -263,19 +263,6 @@ public:
     Rect getSafeAreaRect() const;
 
     /**
-     * Converts a point from screen coordinates to the rendering 2d-coordinate system.
-     * Useful for mapping (multi)touch input to the current scene layout,
-     * taking into account orientation (portrait or landscape) and viewport settings.
-     */
-    Vec2 screenToWorld(const Vec2& point);
-
-    /**
-     * Converts an rendering 2d-coordinate to a screen coordinate.
-     * Useful to convert node points to window points for calls such as glScissor.
-     */
-    Vec2 worldToScreen(const Vec2& point);
-
-    /**
      * Gets the distance between camera and near clipping frame.
      * It is correct for default camera that near clipping frame is same as the screen.
      */

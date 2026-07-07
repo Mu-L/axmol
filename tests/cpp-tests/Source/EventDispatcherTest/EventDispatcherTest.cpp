@@ -88,7 +88,7 @@ private:
 
     bool touchHits(PointerEvent* event)
     {
-        auto hitPos = this->convertToNodeSpace(event->getLocation());
+        auto hitPos = this->convertToNodeSpace(event->getWorldPoint());
         if (hitPos.x >= 0 && hitPos.y >= 0 && hitPos.x <= _contentSize.width && hitPos.y <= _contentSize.height)
         {
             return true;
@@ -196,7 +196,7 @@ void TouchableSpriteTest::onEnter()
     listener1->onPointerDown = [](PointerEvent* event) {
         auto target = static_cast<Sprite*>(event->getCurrentTarget());
 
-        Vec2 locationInNode = target->convertToNodeSpace(event->getLocation());
+        Vec2 locationInNode = target->convertToNodeSpace(event->getWorldPoint());
         Size s              = target->getContentSize();
         Rect rect           = Rect(0, 0, s.width, s.height);
 
@@ -213,7 +213,7 @@ void TouchableSpriteTest::onEnter()
         if (!event->isCaptured())
             return;
         auto target = static_cast<Sprite*>(event->getCurrentTarget());
-        target->setPosition(target->getPosition() + event->getDelta());
+        target->setPosition(target->getPosition() + (event->getWorldPoint() - event->getPrevWorldPoint()));
     };
 
     listener1->onPointerUp = [=](PointerEvent* event) {
@@ -299,7 +299,7 @@ protected:
         auto listener = PointerEventListener::create();
 
         listener->onPointerDown = [this](PointerEvent* event) {
-            Vec2 locationInNode = this->convertToNodeSpace(event->getLocation());
+            Vec2 locationInNode = this->convertToNodeSpace(event->getWorldPoint());
             Size s              = this->getContentSize();
             Rect rect           = Rect(0, 0, s.width, s.height);
 
@@ -411,7 +411,7 @@ void RemovePointerListenerOnPointerDown::onEnter()
     setUserObject(listener1);
 
     listener1->onPointerDown = [sprite1, statusLabel, listener1, this](PointerEvent* event) {
-        Vec2 locationInNode = sprite1->convertToNodeSpace(event->getLocation());
+        Vec2 locationInNode = sprite1->convertToNodeSpace(event->getWorldPoint());
         Size s              = sprite1->getContentSize();
         Rect rect           = Rect(0, 0, s.width, s.height);
 
@@ -464,7 +464,7 @@ void RemoveListenerWhenDispatching::onEnter()
     //    std::shared_ptr<bool> firstClick(new bool(true));
 
     listener1->onPointerDown = [=](PointerEvent* event) {
-        Vec2 locationInNode = sprite1->convertToNodeSpace(event->getLocation());
+        Vec2 locationInNode = sprite1->convertToNodeSpace(event->getWorldPoint());
         Size s              = sprite1->getContentSize();
         Rect rect           = Rect(0, 0, s.width, s.height);
 
@@ -783,7 +783,7 @@ void RemoveAndRetainNodeTest::onEnter()
     listener1->onPointerDown = [](PointerEvent* event) {
         auto target = static_cast<Sprite*>(event->getCurrentTarget());
 
-        Vec2 locationInNode = target->convertToNodeSpace(event->getLocation());
+        Vec2 locationInNode = target->convertToNodeSpace(event->getWorldPoint());
         Size s              = target->getContentSize();
         Rect rect           = Rect(0, 0, s.width, s.height);
 
@@ -800,7 +800,7 @@ void RemoveAndRetainNodeTest::onEnter()
         if (!event->isCaptured())
             return;
         auto target = static_cast<Sprite*>(event->getCurrentTarget());
-        target->setPosition(target->getPosition() + event->getDelta());
+        target->setPosition(target->getPosition() + (event->getWorldPoint() - event->getPrevWorldPoint()));
     };
 
     listener1->onPointerUp = [=](PointerEvent* event) {
@@ -1035,7 +1035,7 @@ GlobalZTouchTest::GlobalZTouchTest() : _sprite(nullptr), _accum(0)
     listener->onPointerDown = [](PointerEvent* event) {
         auto target = static_cast<Sprite*>(event->getCurrentTarget());
 
-        Vec2 locationInNode = target->convertToNodeSpace(event->getLocation());
+        Vec2 locationInNode = target->convertToNodeSpace(event->getWorldPoint());
         Size s              = target->getContentSize();
         Rect rect           = Rect(0, 0, s.width, s.height);
 
@@ -1052,7 +1052,7 @@ GlobalZTouchTest::GlobalZTouchTest() : _sprite(nullptr), _accum(0)
         if (!event->isCaptured())
             return;
         auto target = static_cast<Sprite*>(event->getCurrentTarget());
-        target->setPosition(target->getPosition() + event->getDelta());
+        target->setPosition(target->getPosition() + (event->getWorldPoint() - event->getPrevWorldPoint()));
     };
 
     listener->onPointerUp = [=](PointerEvent* event) {
@@ -1117,23 +1117,23 @@ StopPropagationTest::StopPropagationTest()
 
     auto listener1 = PointerEventListener::create();
 
-    auto topHalfHitTest = [this](PointerEvent* event, const Camera* /*camera*/, Vec3* /*outHitPoint*/) {
-        return this->isPointInTopHalfAreaOfScreen(event->getLocation());
+    auto topHalfHitTest = [this](PointerEvent* event, Vec3* /*outHitPoint*/) {
+        return this->isPointInTopHalfAreaOfScreen(event->getWorldPoint());
     };
 
-    auto bottomHalfHitTest = [this](PointerEvent* event, const Camera* /*camera*/, Vec3* /*outHitPoint*/) {
-        return !this->isPointInTopHalfAreaOfScreen(event->getLocation());
+    auto bottomHalfHitTest = [this](PointerEvent* event, Vec3* /*outHitPoint*/) {
+        return !this->isPointInTopHalfAreaOfScreen(event->getWorldPoint());
     };
 
     listener1->onPointerDown = [this](PointerEvent* event) {
         // Skip if don't touch top half screen.
-        if (!this->isPointInTopHalfAreaOfScreen(event->getLocation()))
+        if (!this->isPointInTopHalfAreaOfScreen(event->getWorldPoint()))
             return false;
 
         auto target = static_cast<Sprite*>(event->getCurrentTarget());
         AXASSERT(target->getTag() == TAG_BLUE_SPRITE, "Yellow blocks shouldn't response event.");
 
-        if (this->isPointInNode(event->getLocation(), target))
+        if (this->isPointInNode(event->getWorldPoint(), target))
         {
             target->setOpacity(180);
             return true;
@@ -1152,13 +1152,13 @@ StopPropagationTest::StopPropagationTest()
     auto listener2           = PointerEventListener::create();
     listener2->onPointerDown = [this](PointerEvent* event) {
         // Skip if don't touch top half screen.
-        if (this->isPointInTopHalfAreaOfScreen(event->getLocation()))
+        if (this->isPointInTopHalfAreaOfScreen(event->getWorldPoint()))
             return false;
 
         auto target = static_cast<Sprite*>(event->getCurrentTarget());
         AXASSERT(target->getTag() == TAG_BLUE_SPRITE2, "Yellow blocks shouldn't response event.");
 
-        if (this->isPointInNode(event->getLocation(), target))
+        if (this->isPointInNode(event->getWorldPoint(), target))
         {
             target->setOpacity(180);
         }
@@ -1170,13 +1170,13 @@ StopPropagationTest::StopPropagationTest()
 
     listener2->onPointerUp = [this](PointerEvent* event) {
         // Skip if don't touch top half screen.
-        if (this->isPointInTopHalfAreaOfScreen(event->getLocation()))
+        if (this->isPointInTopHalfAreaOfScreen(event->getWorldPoint()))
             return;
 
         auto target = static_cast<Sprite*>(event->getCurrentTarget());
         AXASSERT(target->getTag() == TAG_BLUE_SPRITE2, "Yellow blocks shouldn't response event.");
 
-        if (this->isPointInNode(event->getLocation(), target))
+        if (this->isPointInNode(event->getWorldPoint(), target))
         {
             target->setOpacity(255);
         }
@@ -1441,7 +1441,7 @@ PauseResumeTargetTest3::PauseResumeTargetTest3()
         auto listener = PointerEventListener::create();
 
         listener->onPointerDown = [this](PointerEvent* event) {
-            Vec2 locationInNode = _touchableSprite->convertToNodeSpace(event->getLocation());
+            Vec2 locationInNode = _touchableSprite->convertToNodeSpace(event->getWorldPoint());
             Size s              = _touchableSprite->getContentSize();
             Rect rect           = Rect(0, 0, s.width, s.height);
 
@@ -1618,7 +1618,7 @@ public:
 
         _eventListener = PointerEventListener::create();
 
-        _eventListener->onPointerHitTest = [this](PointerEvent*, const Camera*, Vec3*) {
+        _eventListener->onPointerHitTest = [this](PointerEvent*, Vec3*) {
             return true;  // return true always passthrough to onPointerDown
         };
 

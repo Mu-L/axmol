@@ -195,7 +195,7 @@ void Sprite1::addNewSpriteWithCoords(Vec2 p)
 void Sprite1::onPointerUp(PointerEvent* event)
 {
     {
-        auto location = event->getLocation();
+        auto location = event->getWorldPoint();
 
         addNewSpriteWithCoords(location);
     }
@@ -266,7 +266,7 @@ void SpriteBatchNode1::addNewSpriteWithCoords(Vec2 p)
 void SpriteBatchNode1::onPointerUp(PointerEvent* event)
 {
     {
-        auto location = event->getLocation();
+        auto location = event->getWorldPoint();
 
         addNewSpriteWithCoords(location);
     }

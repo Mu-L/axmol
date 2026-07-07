@@ -424,7 +424,7 @@ int lua_register_ax_base_Event(lua_State* tolua_S)
     return 1;
 }
 
-int lua_ax_base_PointerEvent_getLocation(lua_State* tolua_S)
+int lua_ax_base_PointerEvent_getWorldPoint(lua_State* tolua_S)
 {
     int argc = 0;
     ax::PointerEvent* obj = nullptr;
@@ -457,7 +457,7 @@ int lua_ax_base_PointerEvent_getLocation(lua_State* tolua_S)
             tolua_error(tolua_S,"invalid arguments in function 'lua_ax_base_PointerEvent_getLocation'", nullptr);
             return 0;
         }
-        auto&& ret = obj->getLocation();
+        auto&& ret = obj->getWorldPoint();
         vec2_to_luaval(tolua_S, ret);
         return 1;
     }
@@ -471,7 +471,7 @@ int lua_ax_base_PointerEvent_getLocation(lua_State* tolua_S)
 
     return 0;
 }
-int lua_ax_base_PointerEvent_getPreviousLocation(lua_State* tolua_S)
+int lua_ax_base_PointerEvent_getPrevWorldPoint(lua_State* tolua_S)
 {
     int argc = 0;
     ax::PointerEvent* obj = nullptr;
@@ -504,7 +504,7 @@ int lua_ax_base_PointerEvent_getPreviousLocation(lua_State* tolua_S)
             tolua_error(tolua_S,"invalid arguments in function 'lua_ax_base_PointerEvent_getPreviousLocation'", nullptr);
             return 0;
         }
-        auto&& ret = obj->getPreviousLocation();
+        auto&& ret = obj->getPrevWorldPoint();
         vec2_to_luaval(tolua_S, ret);
         return 1;
     }
@@ -598,7 +598,7 @@ int lua_ax_base_PointerEvent_getDelta(lua_State* tolua_S)
             tolua_error(tolua_S,"invalid arguments in function 'lua_ax_base_PointerEvent_getDelta'", nullptr);
             return 0;
         }
-        auto&& ret = obj->getDelta();
+        auto&& ret = (obj->getWorldPoint() - obj->getPrevWorldPoint());
         vec2_to_luaval(tolua_S, ret);
         return 1;
     }
@@ -612,7 +612,7 @@ int lua_ax_base_PointerEvent_getDelta(lua_State* tolua_S)
 
     return 0;
 }
-int lua_ax_base_PointerEvent_getScreenLocation(lua_State* tolua_S)
+int lua_ax_base_PointerEvent_getPoint(lua_State* tolua_S)
 {
     int argc = 0;
     ax::PointerEvent* obj = nullptr;
@@ -645,7 +645,7 @@ int lua_ax_base_PointerEvent_getScreenLocation(lua_State* tolua_S)
             tolua_error(tolua_S,"invalid arguments in function 'lua_ax_base_PointerEvent_getScreenLocation'", nullptr);
             return 0;
         }
-        auto&& ret = obj->getScreenLocation();
+        auto&& ret = obj->getPoint();
         vec2_to_luaval(tolua_S, ret);
         return 1;
     }
@@ -659,7 +659,7 @@ int lua_ax_base_PointerEvent_getScreenLocation(lua_State* tolua_S)
 
     return 0;
 }
-int lua_ax_base_PointerEvent_getPreviousScreenLocation(lua_State* tolua_S)
+int lua_ax_base_PointerEvent_getPrevPoint(lua_State* tolua_S)
 {
     int argc = 0;
     ax::PointerEvent* obj = nullptr;
@@ -692,7 +692,7 @@ int lua_ax_base_PointerEvent_getPreviousScreenLocation(lua_State* tolua_S)
             tolua_error(tolua_S,"invalid arguments in function 'lua_ax_base_PointerEvent_getPreviousScreenLocation'", nullptr);
             return 0;
         }
-        auto&& ret = obj->getPreviousScreenLocation();
+        auto&& ret = obj->getPrevPoint();
         vec2_to_luaval(tolua_S, ret);
         return 1;
     }

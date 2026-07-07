@@ -566,7 +566,6 @@ bool Camera::isBrushValid()
     return _clearBrush != nullptr && _clearBrush->isValid();
 }
 
-#if defined(AX_ENABLE_3D)
 Ray Camera::screenToRay(const Vec2& screenPoint) const
 {
     Vec3 nearP = deprojectScreenToWorld(Vec3(screenPoint.x, screenPoint.y, 0.0f));
@@ -575,7 +574,6 @@ Ray Camera::screenToRay(const Vec2& screenPoint) const
     dir.normalize();
     return Ray{nearP, dir};
 }
-#endif
 
 bool Camera::isWorldPointInRect(const Vec2& pt, const Mat4& w2l, const Rect& rect, Vec3* p)
 {

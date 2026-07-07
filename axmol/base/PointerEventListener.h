@@ -64,7 +64,7 @@ public:
 
 public:
     // Hit-test callback invoked only for scene-graph listeners
-    std::function<bool(PointerEvent*, const Camera*, Vec3*)> onPointerHitTest;
+    std::function<bool(PointerEvent*, Vec3*)> onPointerHitTest;
     std::function<bool(PointerEvent*)> onPointerDown;
     std::function<void(PointerEvent*)> onPointerMove;
     std::function<void(PointerEvent*)> onPointerUp;

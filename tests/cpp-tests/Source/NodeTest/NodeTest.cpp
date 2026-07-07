@@ -791,7 +791,7 @@ ConvertToNode::ConvertToNode()
 
 void ConvertToNode::onPointerUp(PointerEvent* event)
 {
-    auto location = event->getLocation();
+    auto location = event->getWorldPoint();
 
     for (int i = 0; i < 3; i++)
     {

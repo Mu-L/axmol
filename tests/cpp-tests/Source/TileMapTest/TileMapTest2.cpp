@@ -111,7 +111,7 @@ void TileDemoNew::onPointerMove(PointerEvent* event)
     if (!event->isPrimaryPressed())
         return;
 
-    auto diff       = event->getDelta();
+    auto diff       = (event->getWorldPoint() - event->getPrevWorldPoint());
     auto node       = getChildByTag(kTagTileMap);
     auto currentPos = node->getPosition();
     node->setPosition(currentPos + diff);

@@ -1401,7 +1401,7 @@ void ActionStacked::runActionsInSprite(Sprite* sprite)
 
 void ActionStacked::onPointerUp(PointerEvent* event)
 {
-    auto location = event->getLocation();
+    auto location = event->getWorldPoint();
     addNewSpriteWithCoords(location);
 }
 

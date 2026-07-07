@@ -225,7 +225,6 @@ public:
     /** Get the scene that currently owns this camera for rendering. */
     Scene* getOwnerScene() const { return _scene; }
 
-#if defined(AX_ENABLE_3D)
     /**
      * @brief Converts a 2D screen point into a 3D ray in world space.
      *
@@ -247,7 +246,6 @@ public:
      * @see Director::screenToWorld
      */
     Ray screenToRay(const Vec2& screenPoint) const;
-#endif
 
     /**
      * Convert the specified point in 3D world-space coordinates into the screen-space coordinates.
